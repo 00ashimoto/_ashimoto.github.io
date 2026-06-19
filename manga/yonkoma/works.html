@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>wall_line</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/works.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <img id="work" src="" alt="">
+
+    <!-- prev -->
+    <div class="nav prev">
+      <a id="prevLink" href="#">prev</a>
+    </div>
+
+    <!-- next -->
+    <div class="nav next">
+      <a id="nextLink" href="#">next</a>
+    </div>
+
+    <!-- back (シリーズ一覧へ) -->
+    <div class="nav back">
+      <a href="../../manga.html">戻る</a>
+    </div>
+
+  </div>
+  <script src="data.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const index = parseInt(params.get("n"), 10) || 1;
+  const total = works.length;
+
+  const img = document.getElementById("work");
+  const prevLink = document.getElementById("prevLink");
+  const nextLink = document.getElementById("nextLink");
+
+  const work = works[index - 1];
+
+  /* image */
+  img.src = "img/" + work.file;
+  document.title = work.title;
+
+  /* ---- prev behavior (left half) ---- */
+  if (index > 1) {
+    // 前の番号へ
+    prevLink.href = `?n=${index - 1}`;
+    prevLink.style.pointerEvents = "auto";
+  } else {
+    // 最初の写真：無反応
+    prevLink.removeAttribute("href");
+    prevLink.style.pointerEvents = "none";
+  }
+
+  /* ---- next behavior (right half) ---- */
+  if (index < total) {
+    // 次の番号へ
+    nextLink.href = `?n=${index + 1}`;
+  } else {
+    // 最後の写真：シリーズ一覧へ
+    nextLink.href = "../../manga.html";
+  }
+</script>
+</body>
+</html>
