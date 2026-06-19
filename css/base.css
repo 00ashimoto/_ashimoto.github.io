@@ -1,0 +1,19 @@
+/* base.css */
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* base typography */
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family:
+    "Lucida Console",
+    "ヒラギノ角ゴ ProN W3",
+    "Yu Gothic",
+    serif;
+}

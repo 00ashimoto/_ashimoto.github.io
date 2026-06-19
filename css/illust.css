@@ -1,0 +1,16 @@
+/* イラストを囲む外枠の指定 */
+.single-illust-container {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* イラスト本体の指定 */
+.single-illust-container img {
+  display: block;
+  width: auto;            /* 縦横比を崩さないための自動設定 */
+  height: auto;           /* 縦横比を崩さないための自動設定 */
+  max-width: 1200px;      /* 横幅の最大サイズ */
+  max-height: 1200px;     /* 縦幅の最大サイズ */
+  margin: 0 auto;         /* 中央に配置 */
+}

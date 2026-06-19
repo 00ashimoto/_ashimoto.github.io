@@ -1,0 +1,51 @@
+/* work.css */
+
+body {
+  background: #fff;
+}
+
+/* image safety */
+.container img {
+  display: block;
+  max-width: 800px;
+  max-height: 800px;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* common nav area */
+.nav.prev,
+.nav.next {
+  position: fixed;
+  top: 0;
+  width: 50%;
+  height: 100%;
+}
+
+/* full screen clickable areas */
+.nav {
+  position: fixed;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 10;
+}
+
+/* left = prev */
+.nav.prev {
+  left: 0;
+}
+
+/* right = next */
+.nav.next {
+  right: 0;
+}
+
+/* invisible links */
+.nav a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-indent: -9999px;
+}
