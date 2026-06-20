@@ -11,7 +11,8 @@
 
   <div class="container">
 
-    <img id="work" src="" alt="">
+    <!-- 💡ポイント1: あらかじめ非表示にしておき、読み込み完了後にフワッと出すためのclassを追加可能に -->
+    <img id="work" src="" alt="" style="opacity: 0; transition: opacity 0.2s ease-in-out;">
 
     <!-- prev -->
     <div class="nav prev">
@@ -31,39 +32,81 @@
   </div>
   <script src="data.js"></script>
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const index = parseInt(params.get("n"), 10) || 1;
+  let currentIndex = 1;
   const total = works.length;
 
   const img = document.getElementById("work");
   const prevLink = document.getElementById("prevLink");
   const nextLink = document.getElementById("nextLink");
 
-  const work = works[index - 1];
-
-  /* image */
-  img.src = "img/" + work.file;
-  document.title = work.title;
-
-  /* ---- prev behavior (left half) ---- */
-  if (index > 1) {
-    // 前の番号へ
-    prevLink.href = `?n=${index - 1}`;
-    prevLink.style.pointerEvents = "auto";
-  } else {
-    // 最初の写真：無反応
-    prevLink.removeAttribute("href");
-    prevLink.style.pointerEvents = "none";
+  // 💡URLのパラメータから現在の番号を取得する関数
+  function getIndexFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return parseInt(params.get("n"), 10) || 1;
   }
 
-  /* ---- next behavior (right half) ---- */
-  if (index < total) {
-    // 次の番号へ
-    nextLink.href = `?n=${index + 1}`;
-  } else {
-    // 最後の写真：シリーズ一覧へ
-    nextLink.href = "../../manga.html";
+  // 💡画面（画像、タイトル、ボタンのリンク先）を更新するコア関数
+  function updateWork(index, isFirstLoad = false) {
+    if (index < 1 || index > total) return;
+    currentIndex = index;
+
+    const work = works[currentIndex - 1];
+
+    // 画像切り替え時に一瞬フワッとさせる（カクつきを目立たなくする）
+    img.style.opacity = 0;
+
+    // 画像の読み込みが完了したら表示する
+    img.onload = () => {
+      img.style.opacity = 1;
+    };
+    img.src = "img/" + work.file;
+    document.title = work.title;
+
+    // ページをリロードせずにURLの見た目（?n=X）だけを更新する
+    if (!isFirstLoad) {
+      const newURL = window.location.pathname + `?n=${currentIndex}`;
+      window.history.pushState({ n: currentIndex }, "", newURL);
+    }
+
+    /* ---- prev の挙動 ---- */
+    if (currentIndex > 1) {
+      prevLink.href = `?n=${currentIndex - 1}`;
+      prevLink.style.pointerEvents = "auto";
+      prevLink.style.opacity = "1";
+    } else {
+      prevLink.removeAttribute("href");
+      prevLink.style.pointerEvents = "none";
+      prevLink.style.opacity = "0.3"; // 最初のページでは薄くする（お好みで）
+    }
+
+    /* ---- next の挙動 ---- */
+    if (currentIndex < total) {
+      nextLink.href = `?n=${currentIndex + 1}`;
+    } else {
+      nextLink.href = "../../manga.html"; // 最後の写真は一覧へ
+    }
   }
+
+  // 💡クリックイベントを横取りして、リロードを防ぐ
+  function handleNavigation(e, direction) {
+    // 最後の写真で次へ行く時（一覧に戻る時）は通常通り遷移させる
+    if (direction === 1 && currentIndex === total) return;
+
+    e.preventDefault(); // ページリロードをキャンセル
+    const nextIndex = currentIndex + direction;
+    updateWork(nextIndex);
+  }
+
+  prevLink.addEventListener("click", (e) => handleNavigation(e, -1));
+  nextLink.addEventListener("click", (e) => handleNavigation(e, 1));
+
+  // 💡ブラウザの「戻る」「進む」ボタンに対応させる
+  window.addEventListener("popstate", () => {
+    updateWork(getIndexFromURL(), true);
+  });
+
+  // 初回読み込み時の実行
+  updateWork(getIndexFromURL(), true);
 </script>
 </body>
 </html>
