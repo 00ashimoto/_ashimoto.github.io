@@ -1,10 +1,13 @@
 /* top.css */
-
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&display=swap');
 body {
   background-image: url("../top/top.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  font-family: "IBM Plex Sans JP", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* clickable area */
