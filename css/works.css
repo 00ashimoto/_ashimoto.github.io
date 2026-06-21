@@ -1,7 +1,10 @@
 /* work.css */
-
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&display=swap');
 body {
   background: #fff;
+  font-family: "IBM Plex Sans JP", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* 画像を包むコンテナの配置設定 */
