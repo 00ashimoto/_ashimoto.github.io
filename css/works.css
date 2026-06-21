@@ -3,58 +3,67 @@
 body {
   background: #fff;
 }
+
 /* 画像を包むコンテナの配置設定 */
 .container {
   display: flex;
-  justify-content: center;  /* 左右の中央揃え */
+  justify-content: center;  /* 左右の中域揃え */
   align-items: center;      /* 上下の中央揃え */
-  min-height: 100vh;        /* 画面全体の高さを確保（これがないと上下中央になりません） */
+  min-height: 100vh;        /* 画面全体の高さを確保 */
   box-sizing: border-box;
-  padding-top: 60px;        /* ★上部に開けたい余白の大きさ（好みに合わせて数値を調整してください） */
+  padding-top: 40px;
+  padding-bottom: 200px;    /* 画像全体を「少し上」に押し上げる */
 }
 
 /* image safety（大きな画面では最大800px、スマホでは画面ぴったり） */
 .container img {
   display: block;
   width: 100%;
-  max-width: 800px;   /* これでパソコンでの肥大化を防ぎます */
+  max-width: 800px;   /* パソコンでの肥大化防止 */
   height: auto;
   margin: 0 auto;
 }
-}
 
-/* common nav area */
-.nav.prev,
-.nav.next {
-  position: fixed;
-  top: 0;
-  width: 50%;
-  height: 100%;
-}
-
-/* full screen clickable areas */
+/* -----------------------------------------
+   ナビゲーションエリア（共通設定）
+----------------------------------------- */
 .nav {
   position: fixed;
   top: 0;
-  width: 50%;
+  width: 35%;         /* 左右それぞれ35%の幅 */
   height: 100%;
   z-index: 10;
+  /* ★追加：flexの影響を受けないように、配置の基準を画面全体（ウィンドウ）に強制固定します */
+  left: auto;
+  right: auto;
 }
 
-/* left = prev */
+/* 左側 = 前へ */
 .nav.prev {
-  left: 0;
+  left: 0 !important; /* ★ !important をつけて、絶対に「画面の左端（0）」に固定します */
 }
 
-/* right = next */
+/* 右側 = 次へ */
 .nav.next {
-  right: 0;
+  right: 0 !important; /* ★ !important をつけて、絶対に「画面の右端（0）」に固定します */
 }
 
-/* invisible links */
+/* -----------------------------------------
+   見えないリンク（aタグ）の調整
+----------------------------------------- */
 .nav a {
   display: block;
   width: 100%;
   height: 100%;
   text-indent: -9999px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* パソコンでマウスを乗せたときだけ、左右の端をうっすら黒っぽくする */
+.nav.prev a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.nav.next a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
