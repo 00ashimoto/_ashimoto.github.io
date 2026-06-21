@@ -3,7 +3,15 @@
 body {
   background: #fff;
 }
-
+/* 画像を包むコンテナの配置設定 */
+.container {
+  display: flex;
+  justify-content: center;  /* 左右の中央揃え */
+  align-items: center;      /* 上下の中央揃え */
+  min-height: 100vh;        /* 画面全体の高さを確保（これがないと上下中央になりません） */
+  box-sizing: border-box;
+  padding-top: 60px;        /* ★上部に開けたい余白の大きさ（好みに合わせて数値を調整してください） */
+}
 
 /* image safety（大きな画面では最大800px、スマホでは画面ぴったり） */
 .container img {
