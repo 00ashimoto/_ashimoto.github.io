@@ -1,0 +1,64 @@
+/* css/about.css */
+
+/* ページ全体の背景や上下中央のベース */
+.container {
+  display: flex;
+  flex-direction: column;   /* ブロックを縦に並べる */
+  align-items: center;       /* 左右の中央揃え */
+  justify-content: center;   /* 上下の中央揃え */
+  min-height: 100vh;         /* 画面全体の高さを確保 */
+  box-sizing: border-box;
+  padding: 80px 20px;        /* 上下にしっかり余白を持たせる */
+}
+
+/* 各言語の文章ブロック */
+.about-block {
+  width: 100%;
+  max-width: 500px;          /* ★重要：横幅をあえて狭くすることで、スマホでもPCでも読みやすくなります */
+  margin-bottom: 80px;       /* ブロック同士（言語ごと）の間隔 */
+  text-align: center;        /* ★文章を中央揃えにする（左揃えがよければ削除してください） */
+}
+
+/* 詩的な文章の調整 */
+.about-block p {
+  font-size: 16px;
+  line-height: 2.2;          /* ★重要：行間をかなり広めに取ることで、圧倒的に読みやすくなります */
+  letter-spacing: 0.08em;    /* 文字の間隔を少し広げて上品に */
+  color: #333;               /* 真っ黒より少し優しい黒に */
+}
+
+/* お名前・連絡先エリアの調整 */
+.about-block .contact {
+  margin-top: 24px;          /* 文章と名前の間のスキマ */
+  font-size: 14px;           /* プロフィール情報は少し小さく */
+  line-height: 1.8;
+  color: #666;               /* 色を少し薄くしてメリハリをつける */
+}
+
+/* リンク（メールアドレス）の装飾 */
+.about-block .contact a {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px dashed #999; /* メールアドレスの下にさりげない点線 */
+  transition: color 0.3s;
+}
+
+.about-block .contact a:hover {
+  color: #999;
+}
+
+/* backボタン（ナビゲーション）の調整 */
+.nav {
+  margin-top: 20px;
+}
+
+.nav a {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
