@@ -51,9 +51,8 @@ body {
   right: 0 !important; /* ★ !important をつけて、絶対に「画面の右端（0）」に固定します */
 }
 
-nav.back { position: fixed; bottom: 32px; left: 50%;
+.nav.back { position: fixed; bottom: 32px; left: 50%;
   transform: translateX(-50%); z-index: 10; }
-
 
 /* -----------------------------------------
    見えないリンク（aタグ）の調整
