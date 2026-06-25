@@ -21,7 +21,5 @@ const works = [
   { file: "19.jpg", title: "HEYA 19" },
   { file: "20.jpg", title: "HEYA 20" },
   { file: "21.jpg", title: "HEYA 21" },
-  { file: "22.jpg", title: "HEYA 22" },
-  { file: "23.jpg", title: "HEYA 23" },
-  { file: "24.jpg", title: "HEYA 24" },
+
 ];
